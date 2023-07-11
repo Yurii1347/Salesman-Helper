@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/list_Folders">
+
+    <fragment
+        android:id="@+id/ListOfProducts"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.ListProducts"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <argument
+            android:name="folderId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_listFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <argument
+            android:name="barcode"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_ListOfProducts_to_list_Folders2"
+            app:destination="@id/list_Folders" />
+        <action
+            android:id="@+id/action_ListOfProducts_to_addProductWithCamera"
+            app:destination="@id/addProductWithCamera" />
+        <action
+            android:id="@+id/action_ListOfProducts_to_ScanBarcodeFragment"
+            app:destination="@id/ScanBarcodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.AddProduct"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_listFragment"
+            app:destination="@id/ListOfProducts" />
+        <argument
+            android:name="folderId"
+            app:argType="integer" />
+        <argument
+            android:name="barcode"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.UpdateProduct"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_listFragment"
+            app:destination="@id/ListOfProducts" />
+        <argument
+            android:name="product"
+            app:argType="com.vytivskyi.salesmanhelper.model.room.entity.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/list_Folders"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.ListFoldersFragment"
+        android:label="fragment_list__folders_"
+        tools:layout="@layout/fragment_list__folders_" >
+        <action
+            android:id="@+id/action_list_Folders_Fragment_to_listFragment"
+            app:destination="@id/ListOfProducts" />
+        <action
+            android:id="@+id/action_list_Folders_to_search_all_products_fragment"
+            app:destination="@id/search_all_products_fragment" />
+        <action
+            android:id="@+id/action_list_Folders_to_ScanBarcodeFragment"
+            app:destination="@id/ScanBarcodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ScanBarcodeFragment"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.ScanBarcodeFragment"
+        android:label="fragment_barcode_sacanner">
+        <action
+            android:id="@+id/action_barcodeSacanner_to_chooseFolderForProduct"
+            app:destination="@id/chooseFolderForProduct" />
+        <action
+            android:id="@+id/action_barcodeSacanner_to_list_Folders_Fragment"
+            app:destination="@id/list_Folders" />
+        <action
+            android:id="@+id/action_ScanBarcodeFragment_to_ListOfProducts"
+            app:destination="@id/ListOfProducts" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseFolderForProduct"
+        android:name="com.vytivskyi.salesmanhelper.ChooseFolderForProduct"
+        android:label="fragment_choose_folder_for_product"
+        tools:layout="@layout/fragment_choose_folder_for_product" >
+        <argument
+            android:name="barcode"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chooseFolderForProduct_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProductWithCamera"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.AddProductWithCamera"
+        android:label="fragment_add_product_with_camera"
+        tools:layout="@layout/fragment_add_product_with_camera" >
+        <action
+            android:id="@+id/action_addProductWithCamera_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_addProductWithCamera_to_ListOfProducts2"
+            app:destination="@id/ListOfProducts" />
+        <action
+            android:id="@+id/action_addProductWithCamera_to_chooseFolderForProduct"
+            app:destination="@id/chooseFolderForProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/search_all_products_fragment"
+        android:name="com.vytivskyi.salesmanhelper.view.fragments.SearchAllProductsFragment"
+        android:label="fragment_search_all_products_fragment"
+        tools:layout="@layout/fragment_search_all_products" >
+        <action
+            android:id="@+id/action_search_all_products_fragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
+</navigation>
